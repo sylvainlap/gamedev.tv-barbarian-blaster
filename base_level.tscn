@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://dtcnxxofouqf8"]
+
+[ext_resource type="MeshLibrary" uid="uid://dcwopo3qy6qee" path="res://mesh_librairies/space_library.tres" id="1_bo3yr"]
+[ext_resource type="PackedScene" uid="uid://wlvpvb3olsni" path="res://enemy/ennemy.tscn" id="2_5vx1e"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4sal3"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_bo3yr"]
+sky_material = SubResource("ProceduralSkyMaterial_4sal3")
+
+[sub_resource type="Environment" id="Environment_5vx1e"]
+background_mode = 2
+sky = SubResource("Sky_bo3yr")
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bo3yr"]
+albedo_color = Color(0.26666668, 0.26666668, 0.26666668, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_jfg3o"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -24, 0, 6, -1, 0, 1, 1, 0, -1, 14, 0, 6, 1, 0, 1, -1, 0, -1, 14, 0, -2, 1, 0, 1, -1, 0, -1, -10, 0, -2, 0, 0, 0, 0, 0, 0, -10, 0, -6),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="BaseLevel" type="Node3D" unique_id=1897043739]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=580662349]
+environment = SubResource("Environment_5vx1e")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1298102071]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=393470261]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+size = Vector3(100, 2, 100)
+material = SubResource("StandardMaterial3D_bo3yr")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1164708633]
+transform = Transform3D(1, 0, 0, 0, 0.42261824, 0.9063078, 0, -0.9063078, 0.42261824, 0, 14.5, 9.5)
+
+[node name="GridMap" type="GridMap" parent="." unique_id=1780742511]
+mesh_library = ExtResource("1_bo3yr")
+cell_size = Vector3(4, 0.1, 4)
+data = {
+"cells": PackedInt32Array(65535, 65534, 1441792, 65535, 2, 1441792, 65531, 65535, 1441792, 65531, 65534, 1441792, 65532, 65534, 1441792, 65534, 65534, 1441792, 0, 65534, 1441792, 1, 65534, 1441792, 2, 65534, 1441792, 3, 65534, 1441792, 4, 65534, 1441792, 4, 65535, 1441792, 4, 0, 1441792, 4, 1, 1441792, 4, 2, 1441792, 65531, 2, 1441792, 65531, 0, 1441792, 65532, 2, 1441792, 65533, 2, 1441792, 65534, 2, 1441792, 0, 2, 1441792, 1, 2, 1441792, 2, 2, 1441792, 3, 2, 1441792, 65532, 0, 1441792, 65533, 0, 1441792, 65534, 0, 1441792, 65535, 0, 1441792, 0, 0, 1441792, 1, 0, 1441792, 2, 0, 1441792, 65532, 65535, 1441792)
+}
+
+[node name="Path3D" type="Path3D" parent="." unique_id=191399162]
+curve = SubResource("Curve3D_jfg3o")
+
+[node name="Road" type="CSGPolygon3D" parent="Path3D" unique_id=1298957569]
+polygon = PackedVector2Array(-1, 0, -1, 0.1, 1, 0.1, 1, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.5
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="LeftEdge" type="CSGPolygon3D" parent="Path3D" unique_id=406434855]
+polygon = PackedVector2Array(-1.1, 0, -1.1, 0.15, -0.9, 0.15, -0.9, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.5
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="RightEdge" type="CSGPolygon3D" parent="Path3D" unique_id=238703546]
+polygon = PackedVector2Array(0.9, 0, 0.9, 0.15, 1.1, 0.15, 1.1, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.5
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="Enemy" parent="Path3D" unique_id=163458957 instance=ExtResource("2_5vx1e")]
+transform = Transform3D(-0.02701664, 0, -0.9996183, 0, 1, 0, 0.9996183, 0, -0.02701664, -24, 0, 6)

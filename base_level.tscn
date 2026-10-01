@@ -2,6 +2,7 @@
 
 [ext_resource type="MeshLibrary" uid="uid://dcwopo3qy6qee" path="res://mesh_librairies/space_library.tres" id="1_bo3yr"]
 [ext_resource type="PackedScene" uid="uid://wlvpvb3olsni" path="res://enemy/ennemy.tscn" id="2_5vx1e"]
+[ext_resource type="PackedScene" uid="uid://dmp15xq1xg24g" path="res://base/base.tscn" id="3_eesb3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4sal3"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -20,7 +21,7 @@ albedo_color = Color(0.26666668, 0.26666668, 0.26666668, 1)
 
 [sub_resource type="Curve3D" id="Curve3D_jfg3o"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -24, 0, 6, -1, 0, 1, 1, 0, -1, 14, 0, 6, 1, 0, 1, -1, 0, -1, 14, 0, -2, 1, 0, 1, -1, 0, -1, -10, 0, -2, 0, 0, 0, 0, 0, 0, -10, 0, -6),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -22, 0, 6, -1, 0, 1, 1, 0, -1, 14, 0, 6, 1, 0, 1, -1, 0, -1, 14, 0, -2, 1, 0, 1, -1, 0, -1, -10, 0, -2, 0, 0, 0, 0, 0, 0, -10, 0, -6),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
 point_count = 5
@@ -95,4 +96,28 @@ path_u_distance = 1.0
 path_joined = false
 
 [node name="Enemy" parent="Path3D" unique_id=163458957 instance=ExtResource("2_5vx1e")]
-transform = Transform3D(-0.02701664, 0, -0.9996183, 0, 1, 0, 0.9996183, 0, -0.02701664, -24, 0, 6)
+transform = Transform3D(-0.028558811, 0, -0.9995576, 0, 0.9999962, 0, 0.9995582, 0, -0.028558794, -22, 0, 6)
+speed = 5.0
+
+[node name="Enemy2" parent="Path3D" unique_id=1410204475 instance=ExtResource("2_5vx1e")]
+transform = Transform3D(-0.024007102, 0, -0.9996772, 0, 0.9999962, 0, 0.9996778, 0, -0.024007088, -17.001804, 0, 6.1290264)
+progress = 5.0
+speed = 5.0
+
+[node name="Enemy3" parent="Path3D" unique_id=294994569 instance=ExtResource("2_5vx1e")]
+transform = Transform3D(-0.02064838, 0, -0.99975216, 0, 0.9999962, 0, 0.99975276, 0, -0.020648368, -12.00296, 0, 6.240797)
+progress = 10.0
+speed = 5.0
+
+[node name="Enemy4" parent="Path3D" unique_id=1588515517 instance=ExtResource("2_5vx1e")]
+transform = Transform3D(-0.01666595, 0, -0.99982643, 0, 0.9999962, 0, 0.999827, 0, -0.016665941, -7.0038123, 0, 6.3344803)
+progress = 15.0
+speed = 5.0
+
+[node name="Enemy5" parent="Path3D" unique_id=1127113473 instance=ExtResource("2_5vx1e")]
+transform = Transform3D(-0.011294975, 0, -0.9999015, 0, 0.9999962, 0, 0.99990207, 0, -0.011294968, -2.004308, 0, 6.4051886)
+progress = 20.0
+speed = 5.0
+
+[node name="Base" parent="." unique_id=1809853878 instance=ExtResource("3_eesb3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -6)

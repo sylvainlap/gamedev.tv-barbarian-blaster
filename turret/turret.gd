@@ -1,24 +1,44 @@
 extends Node3D
 
 @export var projectile_scene: PackedScene
+@export var turret_range: float = 10.0
 
-var ennemy_path: Path3D
+var enemy_path: Path3D
+var target: PathFollow3D
 
 @onready var turret_top: MeshInstance3D = $TurretBase/TurretTop
+@onready var timer: Timer = $Timer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 func _physics_process(_delta: float) -> void:
-	var ennemies = ennemy_path.get_children()
-	var ennemy = ennemies.back()
-	turret_top.look_at(ennemy.global_position, Vector3.UP, true)
+	target = _find_best_target()
+	if target != null:
+		look_at(target.global_position, Vector3.UP, true)
 
 
-func _shot() -> void:
+func _shoot() -> void:
+	animation_player.play("shoot")
 	var projectile = projectile_scene.instantiate()
 	add_child(projectile)
 	projectile.global_position = turret_top.global_position
 	projectile.direction = turret_top.global_basis.z
 
 
+func _find_best_target() -> PathFollow3D:
+	var best_target = null
+	var best_progress = 0
+
+	for enemy in enemy_path.get_children():
+		if enemy is PathFollow3D:
+			var distance_from_target = global_position.distance_to(enemy.global_position)
+			if distance_from_target < turret_range and enemy.progress > best_progress:
+				best_progress = enemy.progress
+				best_target = enemy
+			
+	return best_target
+
+
 func _on_timer_timeout() -> void:
-	_shot()
+	if target:
+		_shoot()

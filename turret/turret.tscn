@@ -17,12 +17,49 @@ size = Vector3(0.8, 0.4, 0.4)
 [sub_resource type="BoxMesh" id="BoxMesh_xgomg"]
 size = Vector3(0.4, 0.2, 0.4)
 
+[sub_resource type="Animation" id="Animation_2876l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TurretBase/TurretTop:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1p48p"]
+resource_name = "shoot"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TurretBase/TurretTop:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.3, -0.6), Vector3(0, 0.3, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uqrhp"]
+_data = {
+&"RESET": SubResource("Animation_2876l"),
+&"shoot": SubResource("Animation_1p48p")
+}
+
 [node name="Turret" type="Node3D" unique_id=936101830]
 script = ExtResource("1_vfthy")
 projectile_scene = ExtResource("2_2876l")
 
 [node name="TurretBase" type="MeshInstance3D" parent="." unique_id=1710790460]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.3)
 mesh = SubResource("CylinderMesh_jfg3o")
 
 [node name="TurretTop" type="MeshInstance3D" parent="TurretBase" unique_id=325489548]
@@ -39,5 +76,8 @@ mesh = SubResource("BoxMesh_xgomg")
 
 [node name="Timer" type="Timer" parent="." unique_id=767432092]
 autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=73800116]
+libraries/ = SubResource("AnimationLibrary_uqrhp")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

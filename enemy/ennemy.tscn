@@ -6,9 +6,50 @@
 radius = 1.0
 height = 3.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jfg3o"]
+no_depth_test = true
+shading_mode = 0
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jfg3o"]
 radius = 1.0
 height = 3.0
+
+[sub_resource type="Animation" id="Animation_gffdm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DamageHighlight:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_jgxyh"]
+resource_name = "take_damage"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DamageHighlight:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_41ay8"]
+_data = {
+&"RESET": SubResource("Animation_gffdm"),
+&"take_damage": SubResource("Animation_jgxyh")
+}
 
 [node name="Enemy" type="PathFollow3D" unique_id=163458957]
 transform = Transform3D(-0.027016697, 0, -0.99962044, 0, 1, 0, 0.99962044, 0, -0.027016697, 0, 0, 0)
@@ -19,8 +60,17 @@ script = ExtResource("1_gffdm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 mesh = SubResource("CapsuleMesh_jfg3o")
 
+[node name="DamageHighlight" type="MeshInstance3D" parent="." unique_id=183196487]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_jfg3o")
+mesh = SubResource("CapsuleMesh_jfg3o")
+
 [node name="Area3D" type="Area3D" parent="." unique_id=108081253 groups=["Enemy"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=747266078]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("CapsuleShape3D_jfg3o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=243577848]
+libraries/ = SubResource("AnimationLibrary_41ay8")

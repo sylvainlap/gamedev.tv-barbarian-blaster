@@ -2,7 +2,7 @@ extends Node3D
 
 @export var max_health: int = 5
 
-var current_health: int = 5:
+var current_health: int:
 	set(h):
 		current_health = h
 		label_3d.text = str(current_health) + "/" + str(max_health)

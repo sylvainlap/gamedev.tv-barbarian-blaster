@@ -6,6 +6,10 @@
 radius = 1.0
 height = 3.0
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jfg3o"]
+radius = 1.0
+height = 3.0
+
 [node name="Enemy" type="PathFollow3D" unique_id=163458957]
 transform = Transform3D(-0.027016697, 0, -0.99962044, 0, 1, 0, 0.99962044, 0, -0.027016697, 0, 0, 0)
 loop = false
@@ -14,3 +18,9 @@ script = ExtResource("1_gffdm")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1009975491]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 mesh = SubResource("CapsuleMesh_jfg3o")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=108081253 groups=["Enemy"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=747266078]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("CapsuleShape3D_jfg3o")

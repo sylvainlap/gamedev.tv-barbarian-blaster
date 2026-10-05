@@ -36,3 +36,8 @@ mesh = SubResource("BoxMesh_jfg3o")
 [node name="Barrel" type="MeshInstance3D" parent="TurretBase/TurretTop/Visor" unique_id=1480705641]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2)
 mesh = SubResource("BoxMesh_xgomg")
+
+[node name="Timer" type="Timer" parent="." unique_id=767432092]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

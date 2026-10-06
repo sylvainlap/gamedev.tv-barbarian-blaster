@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dfmo8clmi1u3r"]
 
 [ext_resource type="Script" uid="uid://x82lesygthxq" path="res://user_interface/victory_layer.gd" id="1_w18h6"]
+[ext_resource type="Texture2D" uid="uid://dvkq2o8rrv4hb" path="res://assets/star.png" id="2_abaxi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jfg3o"]
 font_size = 96
@@ -34,6 +35,56 @@ layout_mode = 2
 layout_mode = 2
 text = "Victory"
 label_settings = SubResource("LabelSettings_jfg3o")
+horizontal_alignment = 1
+
+[node name="StarContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1637750326]
+layout_mode = 2
+
+[node name="Star1" type="TextureRect" parent="CenterContainer/PanelContainer/VBoxContainer/StarContainer" unique_id=616793598]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_abaxi")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Star2" type="TextureRect" parent="CenterContainer/PanelContainer/VBoxContainer/StarContainer" unique_id=1814311717]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_abaxi")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Star3" type="TextureRect" parent="CenterContainer/PanelContainer/VBoxContainer/StarContainer" unique_id=730382779]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_abaxi")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="SurvivedLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1874321852]
+layout_mode = 2
+text = "Survived +1"
+horizontal_alignment = 1
+
+[node name="HealthLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=872274706]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Full health +1"
+horizontal_alignment = 1
+
+[node name="MoneyLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1955551050]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Money money money +1"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=624520316]

@@ -2,82 +2,61 @@
 
 [ext_resource type="Script" uid="uid://bcdlaa3ilwrj4" path="res://turret/turret.gd" id="1_vfthy"]
 [ext_resource type="PackedScene" uid="uid://die1ae8f8t1ld" path="res://turret/projectile.tscn" id="2_2876l"]
+[ext_resource type="PackedScene" uid="uid://dmcpmomygnc1r" path="res://assets/gltfs/Cannon.glb" id="3_uqrhp"]
+[ext_resource type="PackedScene" uid="uid://bp2dbcmu1d03n" path="res://assets/gltfs/TurretBase.glb" id="4_7gi6x"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_jfg3o"]
-height = 1.0
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_xgomg"]
-top_radius = 0.6
-bottom_radius = 0.6
-height = 0.6
-
-[sub_resource type="BoxMesh" id="BoxMesh_jfg3o"]
-size = Vector3(0.8, 0.4, 0.4)
-
-[sub_resource type="BoxMesh" id="BoxMesh_xgomg"]
-size = Vector3(0.4, 0.2, 0.4)
-
-[sub_resource type="Animation" id="Animation_2876l"]
+[sub_resource type="Animation" id="Animation_uqrhp"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TurretBase/TurretTop:position")
+tracks/0/path = NodePath("Pivot/Cannon:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0.3, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_1p48p"]
+[sub_resource type="Animation" id="Animation_7gi6x"]
 resource_name = "shoot"
 length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TurretBase/TurretTop:position")
+tracks/0/path = NodePath("Pivot/Cannon:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0.3, -0.6), Vector3(0, 0.3, 0)]
+"values": [Vector3(0, 0, -0.3), Vector3(0, 0, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_uqrhp"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rykjw"]
 _data = {
-&"RESET": SubResource("Animation_2876l"),
-&"shoot": SubResource("Animation_1p48p")
+&"RESET": SubResource("Animation_uqrhp"),
+&"shoot": SubResource("Animation_7gi6x")
 }
 
 [node name="Turret" type="Node3D" unique_id=936101830]
 script = ExtResource("1_vfthy")
 projectile_scene = ExtResource("2_2876l")
 
-[node name="TurretBase" type="MeshInstance3D" parent="." unique_id=1710790460]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.3)
-mesh = SubResource("CylinderMesh_jfg3o")
+[node name="TurretBase" parent="." unique_id=542962392 instance=ExtResource("4_7gi6x")]
 
-[node name="TurretTop" type="MeshInstance3D" parent="TurretBase" unique_id=325489548]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
-mesh = SubResource("CylinderMesh_xgomg")
+[node name="Pivot" type="Node3D" parent="." unique_id=369040647]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, 0)
 
-[node name="Visor" type="MeshInstance3D" parent="TurretBase/TurretTop" unique_id=1204715886]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
-mesh = SubResource("BoxMesh_jfg3o")
-
-[node name="Barrel" type="MeshInstance3D" parent="TurretBase/TurretTop/Visor" unique_id=1480705641]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2)
-mesh = SubResource("BoxMesh_xgomg")
+[node name="Cannon" parent="Pivot" unique_id=1795735365 instance=ExtResource("3_uqrhp")]
 
 [node name="Timer" type="Timer" parent="." unique_id=767432092]
 autostart = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=73800116]
-libraries/ = SubResource("AnimationLibrary_uqrhp")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=172415418]
+libraries/ = SubResource("AnimationLibrary_rykjw")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

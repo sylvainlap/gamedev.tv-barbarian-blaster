@@ -9,8 +9,6 @@ var current_health: int:
 		label_3d.modulate = Color.RED.lerp(Color.WHITE, float(current_health) / float(max_health))
 		if current_health < 1:
 			get_tree().reload_current_scene()
-	get:
-		return current_health
 
 @onready var label_3d: Label3D = $Label3D
 

@@ -6,23 +6,24 @@ extends Node3D
 var enemy_path: Path3D
 var target: PathFollow3D
 
-@onready var turret_top: MeshInstance3D = $TurretBase/TurretTop
 @onready var timer: Timer = $Timer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var cannon: Node3D = $Pivot/Cannon
+@onready var pivot: Node3D = $Pivot
 
 
 func _physics_process(_delta: float) -> void:
 	target = _find_best_target()
 	if target != null:
-		look_at(target.global_position, Vector3.UP, true)
+		pivot.look_at(target.global_position, Vector3.UP, true)
 
 
 func _shoot() -> void:
 	animation_player.play("shoot")
 	var projectile = projectile_scene.instantiate()
 	add_child(projectile)
-	projectile.global_position = turret_top.global_position
-	projectile.direction = turret_top.global_basis.z
+	projectile.global_position = cannon.global_position
+	projectile.direction = cannon.global_basis.z
 
 
 func _find_best_target() -> PathFollow3D:

@@ -6,8 +6,6 @@ var current_gold: int:
 	set(g):
 		current_gold = max(g, 0)
 		label.text = "Gold: " + str(current_gold)
-	get:
-		return current_gold
 
 @onready var label: Label = $Label
 

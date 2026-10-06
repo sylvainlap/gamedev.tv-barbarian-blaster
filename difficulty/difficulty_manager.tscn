@@ -7,9 +7,17 @@ _limits = [0.25, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 2), 0.0, -1.7500001, 0, 1, Vector2(1, 0.25), -1.7500001, 0.0, 1, 0]
 point_count = 2
 
+[sub_resource type="Curve" id="Curve_mr7ne"]
+_limits = [10.0, 150.0, 0.0, 1.0]
+_data = [Vector2(0, 10), 0.0, 140.0, 0, 1, Vector2(1, 150), 140.0, 0.0, 1, 0]
+point_count = 2
+
 [node name="DifficultyManager" type="Node" unique_id=46754723]
 script = ExtResource("1_m4ckp")
 spawn_time_curve = SubResource("Curve_m4ckp")
+enemy_health_curve = SubResource("Curve_mr7ne")
 
 [node name="Timer" type="Timer" parent="." unique_id=372291651]
 one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

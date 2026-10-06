@@ -2,15 +2,30 @@ extends Path3D
 
 @export var enemy_scene: PackedScene
 @export var difficulty_manager: Node
+@export var victory_layer: CanvasLayer
 
 @onready var timer: Timer = $Timer
 
 
 func _spawn_enemy() -> void:
 	var enemy = enemy_scene.instantiate()
+	enemy.max_health = difficulty_manager.get_enemy_health()
+	enemy.tree_exited.connect(_on_enemy_defeated)
 	add_child(enemy)
 
 
 func _on_timer_timeout() -> void:
 	_spawn_enemy()
 	timer.wait_time = difficulty_manager.get_spawn_time()
+
+
+func _on_difficulty_manager_stop_spawning_enemies() -> void:
+	timer.stop()
+
+
+func _on_enemy_defeated() -> void:
+	if timer.is_stopped():
+		for child in get_children():
+			if child is PathFollow3D:
+				return
+		victory_layer.set_visible(true)

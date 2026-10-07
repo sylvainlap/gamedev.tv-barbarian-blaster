@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://x82lesygthxq" path="res://user_interface/victory_layer.gd" id="1_w18h6"]
 [ext_resource type="Texture2D" uid="uid://dvkq2o8rrv4hb" path="res://assets/star.png" id="2_abaxi"]
+[ext_resource type="FontFile" uid="uid://g8rdm6w87ooa" path="res://fonts/static/Asap-Bold.ttf" id="2_vhsw1"]
+
+[sub_resource type="Theme" id="Theme_j6k6v"]
+default_font = ExtResource("2_vhsw1")
 
 [sub_resource type="LabelSettings" id="LabelSettings_jfg3o"]
 font_size = 96
@@ -23,6 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_j6k6v")
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=637813389]
 custom_minimum_size = Vector2(400, 400)
@@ -89,6 +94,7 @@ horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=624520316]
 layout_mode = 2
+size_flags_vertical = 10
 
 [node name="RetryButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=810661114]
 layout_mode = 2

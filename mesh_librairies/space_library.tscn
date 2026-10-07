@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://dyd6y6ql1e28r"]
 
+[ext_resource type="PackedScene" uid="uid://dfcebvy8gnkpc" path="res://assets/gltfs/Tree.glb" id="1_p8r4v"]
+[ext_resource type="PackedScene" uid="uid://dvo87f4vre610" path="res://assets/gltfs/Rocks.glb" id="2_liu5s"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_giqh6"]
-albedo_color = Color(0.8039216, 0.8039216, 0.8039216, 1)
+blend_mode = 1
+albedo_color = Color(0.24477625, 0.2447764, 0.24477655, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_jfg3o"]
 material = SubResource("StandardMaterial3D_giqh6")
@@ -11,7 +15,8 @@ size = Vector3(4, 0.1, 4)
 data = PackedVector3Array(-2, 0.049999997, 2, 2, 0.049999997, 2, -2, -0.049999997, 2, 2, 0.049999997, 2, 2, -0.049999997, 2, -2, -0.049999997, 2, 2, 0.049999997, -2, -2, 0.049999997, -2, 2, -0.049999997, -2, -2, 0.049999997, -2, -2, -0.049999997, -2, 2, -0.049999997, -2, 2, 0.049999997, 2, 2, 0.049999997, -2, 2, -0.049999997, 2, 2, 0.049999997, -2, 2, -0.049999997, -2, 2, -0.049999997, 2, -2, 0.049999997, -2, -2, 0.049999997, 2, -2, -0.049999997, -2, -2, 0.049999997, 2, -2, -0.049999997, 2, -2, -0.049999997, -2, 2, 0.049999997, 2, -2, 0.049999997, 2, 2, 0.049999997, -2, -2, 0.049999997, 2, -2, 0.049999997, -2, 2, 0.049999997, -2, -2, -0.049999997, 2, 2, -0.049999997, 2, -2, -0.049999997, -2, 2, -0.049999997, 2, 2, -0.049999997, -2, -2, -0.049999997, -2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_or4ng"]
-albedo_color = Color(0.84, 0.22764002, 0.15959999, 1)
+transparency = 1
+albedo_color = Color(0.8392157, 0.22745098, 0.16078432, 0)
 
 [sub_resource type="BoxMesh" id="BoxMesh_xgomg"]
 material = SubResource("StandardMaterial3D_or4ng")
@@ -37,3 +42,7 @@ mesh = SubResource("BoxMesh_xgomg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TurretBase/StaticBody3D" unique_id=1696622987]
 shape = SubResource("ConcavePolygonShape3D_w10go")
+
+[node name="Tree" parent="." unique_id=569871410 instance=ExtResource("1_p8r4v")]
+
+[node name="Rocks" parent="." unique_id=1525973158 instance=ExtResource("2_liu5s")]

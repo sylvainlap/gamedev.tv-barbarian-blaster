@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://cyfw7270jojwp" path="res://difficulty/difficulty_manager.gd" id="1_m4ckp"]
 
 [sub_resource type="Curve" id="Curve_m4ckp"]
-_limits = [0.25, 2.0, 0.0, 1.0]
-_data = [Vector2(0, 2), 0.0, -1.7500001, 0, 1, Vector2(1, 0.25), -1.7500001, 0.0, 1, 0]
+_limits = [0.25, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 3), 0.0, 0.2240198, 0, 0, Vector2(1, 0.25), -7.4157357, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_mr7ne"]
-_limits = [10.0, 150.0, 0.0, 1.0]
-_data = [Vector2(0, 10), 0.0, 140.0, 0, 1, Vector2(1, 150), 140.0, 0.0, 1, 0]
+_limits = [40.0, 150.0, 0.0, 1.0]
+_data = [Vector2(0, 40), 0.0, 110.0, 0, 1, Vector2(1, 150), 110.0, 0.0, 1, 0]
 point_count = 2
 
 [node name="DifficultyManager" type="Node" unique_id=46754723]
